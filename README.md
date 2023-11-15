@@ -1,7 +1,5 @@
-# starter_kit_flutter
+# tender_book_app
 
-
----
 
 ## Getting Started 🚀
 
@@ -31,32 +29,28 @@ $ flutter run --flavor production --target lib/main_production.dart
 │   ├── app
 │   │   ├── app.dart
 │   │   ├── app_router.dart
-├── config
-│   ├── icons.dart
-│   ├── get_it.dart
-│   ├── color.dart
-│   ├── http_client.dart
-│   ├── theme.dart
-│   ├── bloc_provider.dart
 ├── core
 │   ├── presentation
 │   ├── utils
+│   ├── config
 │   ├── const
+│   ├── widgets
 ├── l10n
 ├── modules
-│   ├── data
-│   │  ├── models
-│   │  ├── repository
-│   │  ├── service
+│   ├── module1
+│   │   ├── data
+│   │   ├── models
+│   │   ├── repository
+│   │   ├── service
 │   ├── domain
-│   │  ├── models
-│   │  ├── repository
-│   │  ├── bloc
+│   │   ├── models
+│   │   ├── repository
+│   │   ├── bloc
 │   ├── presentation
-│   │  ├── widgets
-│   │  ├── pages
-├── shared
-│   ├── widgets
+│   │   ├── widgets
+│   │   ├── pages
+
+
 
 ```
 
@@ -217,7 +211,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
-## Native Splash screen 
+## Native Splash screen
 `flutter_native_spalsh.yaml` file contains all the necessary config. under the hood, we are using [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
 ```shell
 make createSplash

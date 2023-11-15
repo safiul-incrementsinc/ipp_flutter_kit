@@ -64,7 +64,6 @@ flutter:
   assets:
     - assets/
     - assets/images/
-    - assets/animations/
     - .env
   fonts:
     - family: 'CustomIcons'
