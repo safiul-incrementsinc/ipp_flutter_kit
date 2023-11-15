@@ -56,7 +56,7 @@ dependency_overrides:
   xml: ^6.3.0
 
 flutter_app_name:
-  name: "BreezeBuy"
+  name: "starter kit ipp"
 
 flutter:
   uses-material-design: true

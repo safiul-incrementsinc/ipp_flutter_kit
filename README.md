@@ -1,4 +1,4 @@
-# tender_book_app
+# starter_kit_ipp
 
 
 ## Getting Started 🚀

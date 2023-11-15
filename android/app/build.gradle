@@ -83,17 +83,17 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "Breeze Buy"]
+            manifestPlaceholders = [appName: "starter kit ipp"]
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] Breeze Buy"]
+            manifestPlaceholders = [appName: "[STG] starter kit ipp"]
         }
         development {
             dimension "default"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "[DEV] Breeze Buy"]
+            manifestPlaceholders = [appName: "[DEV] starter kit ipp"]
         }
     }
 
