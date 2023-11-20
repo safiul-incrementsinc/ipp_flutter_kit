@@ -2,6 +2,8 @@ SHELL := /bin/bash
 
 ### Build Runner
 buildRunner:
+	fvm flutter clean
+	fvm flutter pub get
 	fvm flutter pub run build_runner watch --delete-conflicting-outputs
 
 ### Change app icon
