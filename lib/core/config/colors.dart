@@ -4,26 +4,56 @@ import 'package:flutter/material.dart';
 /// and will retun [MaterialColor]. so that we can use any color as material color
 /// property. from a solid color it will generate `shade100` to `shade900`.and `shade500`
 /// will be base color.
-MaterialColor createMaterialColor(Color color) {
-  final List<double> strengths = <double>[.5];
+MaterialColor createMaterialColor(Color baseColor) {
+  Color color = baseColor;
+  int shadeCount = 0;
+  int tintCount = 0;
+  int mid = 0;
   final swatch = <int, Color>{};
-  final r = color.red;
-  final g = color.green;
-  final b = color.blue;
+  for (int i = 1; i <= 10; i++) {
+    final Color? tint = Color.lerp(color, Colors.white, 0.15);
+    color = tint!;
+    if (color.red >= 250 && color.green >= 250 && color.blue >= 250) {
+      break;
+    }
+    tintCount++;
+  }
+  color = baseColor;
+  for (int i = 1; i <= 10; i++) {
+    final Color? shade = Color.lerp(color, Colors.black, 0.15);
+    color = shade!;
+    if (color.red <= 15 || color.green <= 15 || color.blue <= 15) {
+      break;
+    }
+    shadeCount++;
+  }
 
-  for (int i = 1; i < 10; i++) {
-    strengths.add(0.1 * i);
+  if (shadeCount >= 4 && tintCount >= 4) {
+    mid = 5;
+  } else if (shadeCount < 4) {
+    mid = 10 - shadeCount;
+  } else if (tintCount < 4) {
+    mid = tintCount + 1;
   }
-  for (final strength in strengths) {
-    final double ds = 0.5 - strength;
-    swatch[(strength * 1000).round()] = Color.fromRGBO(
-      r + ((ds < 0 ? r : (255 - r)) * ds).round(),
-      g + ((ds < 0 ? g : (255 - g)) * ds).round(),
-      b + ((ds < 0 ? b : (255 - b)) * ds).round(),
-      1,
-    );
+  color = baseColor;
+  swatch[(mid * 100)] = baseColor;
+  for (int i = mid - 1; i >= 1; i--) {
+    final Color? tint = Color.lerp(color, Colors.white, 0.15);
+    color = tint!;
+    swatch[(i * 100)] = tint;
+    if (i == 1) {
+      final Color? tint50 = Color.lerp(color, Colors.white, 0.15);
+      swatch[50] = tint50!;
+    }
   }
-  return MaterialColor(color.value, swatch);
+  color = baseColor;
+  for (int i = mid; i <= 10; i++) {
+    final Color? shade = Color.lerp(color, Colors.black, 0.15);
+    color = shade!;
+    swatch[(i * 100)] = shade;
+  }
+  //print(swatch);
+  return MaterialColor(baseColor.value, swatch);
 }
 
 /// project colors
