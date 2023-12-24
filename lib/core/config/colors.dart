@@ -9,9 +9,10 @@ MaterialColor createMaterialColor(Color baseColor) {
   int shadeCount = 0;
   int tintCount = 0;
   int mid = 0;
+  const double mixPercent = 0.15;
   final swatch = <int, Color>{};
   for (int i = 1; i <= 10; i++) {
-    final Color? tint = Color.lerp(color, Colors.white, 0.15);
+    final Color? tint = Color.lerp(color, Colors.white, mixPercent);
     color = tint!;
     if (color.red >= 250 && color.green >= 250 && color.blue >= 250) {
       break;
@@ -20,9 +21,9 @@ MaterialColor createMaterialColor(Color baseColor) {
   }
   color = baseColor;
   for (int i = 1; i <= 10; i++) {
-    final Color? shade = Color.lerp(color, Colors.black, 0.15);
+    final Color? shade = Color.lerp(color, Colors.black, mixPercent);
     color = shade!;
-    if (color.red <= 15 || color.green <= 15 || color.blue <= 15) {
+    if (color.red <= 15 && color.green <= 15 && color.blue <= 15) {
       break;
     }
     shadeCount++;
@@ -36,23 +37,26 @@ MaterialColor createMaterialColor(Color baseColor) {
     mid = tintCount + 1;
   }
   color = baseColor;
-  swatch[(mid * 100)] = baseColor;
+  if (mid == 1) {
+    swatch[50] = baseColor;
+  } else {
+    swatch[(mid * 100)] = baseColor;
+  }
   for (int i = mid - 1; i >= 1; i--) {
-    final Color? tint = Color.lerp(color, Colors.white, 0.15);
+    final Color? tint = Color.lerp(color, Colors.white, mixPercent);
     color = tint!;
     swatch[(i * 100)] = tint;
     if (i == 1) {
-      final Color? tint50 = Color.lerp(color, Colors.white, 0.15);
+      final Color? tint50 = Color.lerp(color, Colors.white, mixPercent);
       swatch[50] = tint50!;
     }
   }
   color = baseColor;
   for (int i = mid; i <= 10; i++) {
-    final Color? shade = Color.lerp(color, Colors.black, 0.15);
+    final Color? shade = Color.lerp(color, Colors.black, mixPercent);
     color = shade!;
     swatch[(i * 100)] = shade;
   }
-  //print(swatch);
   return MaterialColor(baseColor.value, swatch);
 }
 
